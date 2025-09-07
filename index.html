@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Simple homepage by Arza707">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <link rel="icon" type="ico" href="resources/favicon.ico">
+    <title>Simple Homepage</title>
+</head>
+<style>
+    /* ---------------------------------------- Bagian untuk keseluruhan ---------------------------------------- */
+    html{
+        scroll-behavior: smooth;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        background-color: #F2F9FE;
+        transition: all 0.5s ease;
+        
+    }
+    h1{
+        font-family: "Poppins", sans-serif;
+        font-size: 60px;
+        color: #223344;
+    }
+    h2{
+        font-family: "Poppins", sans-serif;
+        font-size: 30px;
+        color: #223344;
+        font-weight: 500;
+    }
+    h3{
+        font-family: "Poppins", sans-serif;
+        font-size: 16px;
+        color: #223344;
+    }
+    p{
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        color: #223344;
+        font-weight: 600;
+    }
+    .p2{
+        color: #909193;
+    }
+    .about a{
+        text-decoration: none;
+        color: #223344;
+    }
+    .link{
+        color: #2A4DD0;
+        text-decoration: none; 
+        color: #2A4DD0; 
+        text-decoration: underline; 
+        text-decoration-thickness: 3px;
+        text-underline-offset: 5px;
+    }
+    .layout{
+        border: px solid red;
+        height: fit-content;
+        transition: all 0.5s ease;
+        padding-left: 70px;
+    }
+    /* ------------------------------------------------- Bagian Menu atas --------------------------------------- */
+    .menu{
+        border: px solid black;
+        display: flex;
+        height: 60px;
+        width: 100%;
+    }
+    .menuLayout{
+        border: px solid black;
+        height: 100%;
+        width: 33%;
+        display: flex;
+        align-items: center;
+    }
+    .menuMode{
+        border: px solid black;
+        height: 100%;
+        width: 33%;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+    }
+    .logo-dark{
+        position: absolute;
+        display: none;
+        transition: all 1s ease;
+        height: auto;
+        width: auto;
+    }
+    .logo-light{
+        transition: all 1s ease;
+        height: auto;
+        width: auto;
+        
+    }
+    .about{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    /* ---------------------------------------- Bagian ganti mode terang-gelap --------------------------------- */
+    .mode{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        padding-right: 60px;
+    }
+    
+    .moon-dark,
+    .sun-dark{
+        display: none;
+    }
+    #mode-toggle{ /* Buat hidden checkbox untu ganti mode */
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        width: 50px;
+        height: 30px;
+    }
+    .switchButton{
+        background-color: #111729;
+        height: 27px;
+        width: 50px;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px;
+        transition: all 1s ease;
+    }
+    .currentMode{
+        background-color: white;
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        margin-left: 23px;
+        border-radius: 50%;
+        z-index: 0;
+        transition: transform 0.5s ease;
+    }
+
+    /* -------------------------------------------- Bagian Menu Sidebar ---------------------------------------- */
+    .menuSidebar{
+        display: none;
+    }
+    .hamburger-menu {
+      position: relative;
+      
+    }
+
+    /* hidden checkbox */
+    #menu-toggle {
+      display: none;
+    }
+
+    /* tombol hamburger */
+    .menu-icon {
+      width: 35px;
+      height: 25px;
+      position: relative;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+
+    /* dropdown */
+    .menu-content {
+      display: none;
+      position: absolute;
+      min-width: 150px;
+      background: white;
+      overflow: hidden;
+      height: 1210px;
+      width: 380px;
+      right: -20px;
+      top: -20px;
+      text-align: end;
+      animation: slideLeft 0.3s ease;
+      transition: all 0.5s ease;
+      padding: 10px;
+      z-index: 1;
+    }
+
+    .menu-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #223344;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .menu-content a:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* saat aktif, tampilkan menu */
+    #menu-toggle:checked ~ .menu-content {
+      display: block;
+      animation: slideLeft 0.3s ease;
+    }
+
+    @keyframes slideLeft {
+      from {opacity: 0; transform: translateX(10px);}
+      to {opacity: 1; transform: translateX(0);}
+    }
+
+    /* ------------------------------------------------ Bagian Main ----------------------------------------------*/
+    #home{
+        border: 0px solid black;
+      
+        display: flex;
+        align-items: center;
+    }
+    
+    .text{
+        border: px solid black;
+    }
+    .judul{
+        padding-top: 1px; 
+        padding-right: 200px;
+    }
+    .get{
+        width: 100%;
+        height: 40px;
+        border: px solid black;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .getStarted{
+        height: 100%;
+        width: 130px;
+        border: 0px solid black;
+        border-radius: 10px;
+        background-color: #2A4DD0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+       
+    }
+    .checklist{
+        display: flex;
+        align-items: center;
+        padding-top: 30px;
+        gap: 20px;
+    }
+    .check{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    .thumbnail{
+        border: px solid black;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        width: 100%;
+    }
+
+    /* ----------------------------- Ketika hidden checkbox ganti mode terang ke gelap -------------------------- */
+
+    .layout:has(#mode-toggle:checked),
+    body:has(#mode-toggle:checked),
+    .layout:has(#mode-toggle:checked) .menu-content{
+        background: #111729;
+    }
+    .layout:has(#mode-toggle:checked) .logo-dark,
+    .layout:has(#mode-toggle:checked) .sun-dark,
+    .layout:has(#mode-toggle:checked) .moon-dark{
+        display: block;
+    }
+    .layout:has(#mode-toggle:checked) .logo-light,
+    .layout:has(#mode-toggle:checked) .sun-light,
+    .layout:has(#mode-toggle:checked) .moon-light{
+        display: none;
+    }
+    .layout:has(#mode-toggle:checked) h3,
+    .layout:has(#mode-toggle:checked) h2,
+    .layout:has(#mode-toggle:checked) h1,
+    .layout:has(#mode-toggle:checked) p,
+    .layout:has(#mode-toggle:checked) .link,
+    .layout:has(#mode-toggle:checked) .about a{
+        color: #F2F9FE;
+    }
+    .layout:has(#mode-toggle:checked) .currentMode{
+        transform: translateX(-23px);
+    }
+    .layout:has(#mode-toggle:checked) .switchButton{
+        background: #223344;
+    }
+
+    /* --------------------------------------- Bagian ketika layarnya 1024px ------------------------------------ */
+    @media (max-width: 1024px){
+        .judul{
+            padding-right: 50px;
+
+        }
+    }
+
+    /* --------------------------------------- Bagian ketika POV dari mobile/hp ------------------------------------ */
+    .modePhone{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-top: 40px;
+    }
+    .thumbnailPhone{
+        display: none;
+       text-align: center;
+    }
+
+    @media (max-width: 640px){
+        .thumbnailPhone,
+        .menuSidebar{
+            display: block;
+
+        }
+        .thumbnail,
+        .about,
+        .mode{
+            display: none;
+
+        }
+        #home{
+            display: grid;
+           
+        }
+        .layout{
+            padding: 10px;
+            overflow: hidden;
+
+        }
+    }
+</style>
+<body>
+    <div class="layout">
+        <div class="menu">
+            <div class="menuLayout">
+                <img src="resources/logo-light.svg" alt="logo-light" class="logo-light">
+                <img src="resources/logo-dark.svg" alt="logo-dark" class="logo-dark">
+            </div>
+            <div class="menuLayout">
+                <div class="about">
+                    <div class="aboutUs">
+                        <a href="index.html"><p class="link">About us</p></a>
+                    </div>
+                    <div class="product">
+                        <a href="index.html"><p>Product</p></a>
+                    </div>
+                    <div class="resource">
+                        <a href="index.html"><p>Resource</p></a>
+                    </div>
+                    <div class="contact">
+                        <a href="index.html"><p>Contact</p></a>
+                    </div>
+                </div>
+            </div>
+            <div class="menuMode">
+                <div class="mode">
+                    <div class="switchButton">
+                        <input type="checkbox" id="mode-toggle" style="z-index: 2;">
+                        <img src="resources/Moon_fill_light.svg" class="moon-light" style="z-index: 1; height: auto; width: auto;" alt="moon-light">
+                        <img src="resources/Moon_fill.svg" class="moon-dark" style="z-index: 1; height: auto; width: auto;" alt="moon-dark">
+                        <img src="resources/Sun_fill.svg" style="z-index: 1; height: auto; width: auto;" class="sun-light" alt="sun-light">
+                        <img src="resources/Sun_fill_dark.png" style="z-index: 1; width: 30px; height: auto;" class="sun-dark" alt="sun-dark">
+                        <div class="currentMode"></div>
+                    </div>
+                </div>
+                <div class="menuSidebar">
+                    <div class="hamburger-menu">
+                        <input type="checkbox" id="menu-toggle">
+                        <label for="menu-toggle" class="menu-icon">
+                            <img src="resources/hamburger-button.svg" style="height: auto; width: auto;" alt="hamburger-button">
+                        </label>
+                
+                        <div class="menu-content">
+                            <input type="checkbox" id="menu-toggle">
+                            <label for="menu-toggle" class="menu-icon">
+                                <img src="resources/close-button.svg" style="height: auto; width: auto;" alt="close-button">
+                            </label>
+                            <a href="#home"><h2 class="link" style="text-decoration-thickness: 2px; text-underline-offset: 10px;">About us</h2></a>
+                            <a href="#about"><h2>Product</h2></a>
+                            <a href="#credit"><h2>Resource</h2></a>
+                            <a href="#credit"><h2>Contact</h2></a>
+                            <div class="modePhone">
+                                <div class="switchButton">
+                                    <input type="checkbox" id="mode-toggle" style="z-index: 2;">
+                                    <img src="resources/Moon_fill_light.svg" class="moon-light" style="z-index: 1; height: auto; width: auto;" alt="moon-light">
+                                    <img src="resources/Moon_fill.svg" class="moon-dark" style="z-index: 1; height: auto; width: auto;" alt="moon-dark">
+                                    <img src="resources/Sun_fill.svg" style="z-index: 1; height: auto; width: auto;" class="sun-light" alt="sun-light">
+                                    <img src="resources/Sun_fill_dark.png" style="z-index: 1; width: 30px; height: auto;" class="sun-dark" alt="sun-dark">
+                                    <div class="currentMode"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="home">
+            <div class="thumbnailPhone">
+                <img src="resources/hero-image-simple-homepage@2x.png" style="height: auto; width: 50%;" alt="thumbnail for phone">
+            </div>
+            <div class="text">
+                <div style="position: absolute;"><p>😎 SIMPLE WAY TO COMMUNICATE</p></div>
+                <div class="judul"><h1 >Actions for Accessibility in Design</h1></div>
+                <div style="padding-right: 30px;"><h2 class="p2" style="font-size: 18px;" >The fastest way to build and deploy websites with reusable components.</h2></div>
+                <div class="get">
+                    <button type="button" onclick="location.href='index.html'" class="getStarted">
+                        <span><p style=" color: #F2F9FE;">GET STARTED</p></span>
+                    </button>
+                    <a href="index.html" class="link"><p class="link">Get live demo</p></a>
+                </div>
+                <div class="checklist">
+                    <div class="check">
+                        <img src="resources/Done_ring_round_fill.svg" alt="checklist 1" style="height: auto; width: auto;">
+                        <p class="p2" style="font-weight: 500;">No credit card required</p>
+                    </div>
+                    <div class="check">
+                        <img src="resources/Done_ring_round_fill.svg" alt="checklist 2" style="height: auto; width: auto;">
+                        <p class="p2" style="font-weight: 500;">No software to install</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thumbnail">
+                <img src="resources/hero-image-simple-homepage.png" style="height: auto; width: 100%;" alt="thumbnail">
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
